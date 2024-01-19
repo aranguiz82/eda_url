@@ -16,7 +16,6 @@
       action:
         run_job_template:
           name: wowza.yml
-          copy_files: true
 
     - name: Web site is down
       condition: event.url_check.status == "down"
@@ -24,4 +23,3 @@
       action:
         run_job_template:
           name: fix_web.yml
-          copy_files: true
