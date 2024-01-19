@@ -1,0 +1,23 @@
+---
+- name: Site Down
+  hosts: all
+  gather_facts: false
+  become: true
+  
+  tasks:
+    - debug:
+        msg: "Website is down!"
+
+    # - name: Replace website
+    #   copy:
+    #    remote_src: yes
+    #    src: /tmp/index.html
+    #    dest: /var/www/html/
+    #    owner: apache
+    #    group: apache
+    #    mode: '0644'
+    - name: Copia index.html desde GitHub
+      ansible.builtin.get_url:
+      url: https://raw.githubusercontent.com/aranguiz82/ansible/main/index.html
+      dest: /var/www/html/index.html
+      mode: u=rw,g=r,o=r
